@@ -1,0 +1,76 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- -->
+
+  <!-- Main Site -->
+  <main id="site-main">
+    <div class="container">
+        <div class="box-nav d-flex justify-between">
+
+           <!-- LOGIN -->
+           <div class="filter">
+               <a href="/api/auth/login"><i class="fas fa-angle-double-left"></i>login</a>
+           </div>
+
+           <!-- LOGOUT form -->
+           <div class="container">
+                <%- include('include/_formLogout') %>
+           </div>
+
+           <!-- PROFILE form -->
+           <div class="filter">
+                <%- include('include/_formProfileOne') %>
+           </div>
+
+            <!--add user-->
+            <div class="filter">
+                <a href="/api/auth/add_user"><i class="fas fa-angle-double-left"></i>add user</a>
+            </div>
+
+            <!-- _show_all_products form button -->
+            <div class="filter">
+                <%- include('include/_formUserShowAllProducts') %>
+           </div>
+
+           <!-- user search products by category -->
+           <form action="/api/products/search_by_category" method="get">
+                <div class="form-group">
+                    <select id="" name="categories">
+                        <option selected>sport</option>
+                        <option>t-shirt</option>
+                        <option>shoes</option>
+                    </select>
+                    <button type="submit" class="btn text-dark update">Search By Category</button>
+                </div>
+            </form>
+
+            <!-- user search products by title -->
+            <form action="/api/products/user_search_by_title" method="get">
+                <div class="form-group">
+                    <input type="text" value="" name="title" placeholder="search by title">
+                    <button type="submit" class="btn text-dark update">Search By Title</button>
+                </div>
+            </form>
+
+            <!-- Newest Products -->
+            <div class="filter">
+                <a href="/api/products/search_by_newest?new=true"><i class="fas fa-angle-double-left"></i>Newest Products</a>
+            </div>
+
+            <!-- CART -->
+            <div class="filter">
+                <a href="/api/carts/user_show_cart"><i class="fas fa-angle-double-left"></i>CART</a>
+            </div>
+            
+            <!-- Order -->
+            <div class="filter">
+                <a href="/api/orders/user_show_all_orders"><i class="fas fa-angle-double-left"></i>my Orders</a>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

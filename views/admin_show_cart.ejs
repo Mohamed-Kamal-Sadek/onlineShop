@@ -1,0 +1,104 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+    <!-- Main Site -->
+    <main id="site-main">
+        <div class="container">
+            
+            <div class="box-nav d-flex justify-between">
+                <a href="/" class="border-shadow">
+                    <span class="text-gradient">HOME <i class="fas fa-user"></i></span>
+                </a>
+            </div>
+
+            <!-- logout form -->
+            <div class="filter">
+                <%- include('include/_formLogout') %>
+            </div>
+
+            <h4>admin_show_cart.ejs</h4>
+        </div>
+        <div class="container">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>No.</th>                  
+                        <th>Title</th>
+                        <th>Img</th>
+                        <th>Size</th>
+                        <th>Color</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th></th>
+                        <th>SubTotalPrice</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <% var Total = new Number(0) %>
+                        <% for(var i = 0; i < cart.products.length; i++) { %>
+                        <form class="form" method="" action=""  id="">
+                            <input type="hidden" name="id" value="<%= cart.id %>">
+                            <input type="hidden" name="userId" value="<%= cart.userId %>">
+                            <tr>
+                                <td><%= i + 1 %></td>
+                                <input type="hidden" name="productId" value="<%= cart.products[i].productId %>"><!--do not put td not to make displacement-->
+                                <td><%= cart.products[i].title %></td>
+                                <input type="hidden" name="title" value="<%= cart.products[i].title %>">
+                                <td><img src="<%= cart.products[i].img %>" height="50em" width="50em"></td>
+                                <input type="hidden" name="img" value="<%= cart.products[i].img %>">
+                                <td><%= cart.products[i].size %></td>
+                                <input type="hidden" name="size" value="<%= cart.products[i].size %>">
+                                <td><%= cart.products[i].color %></td>
+                                <input type="hidden" name="color" value="<%= cart.products[i].color %>">
+                                <td><%= cart.products[i].price %> $</td>
+                                <input type="hidden" name="price" value="<%= cart.products[i].price %>">
+                                <td><input type="number" name="quantity" value="<%= cart.products[i].quantity %>" min="1" max="1000" step="1"></td>
+                                <td><button type="submit" class="btn text-dark update" >Save Quantity</button></td>
+                                <td><%= cart.products[i].subTotalPrice %> $</td>
+                                <input type="hidden" name="subTotalPrice" value="<%= cart.products[i].subTotalPrice %>">
+                            
+                                <td>
+                                    <a class="btn border-shadow delete delete-product" cart-id="<%= cart.id %>" product-id="<%= cart.products[i].productId %>">
+                                    <span class="text-gradient"><i class="fas fa-times"></i></span>
+                                </td>
+                            </tr>
+                        </form>
+                        <% Total = (Total + new Number(cart.products[i].subTotalPrice)) %>
+                        <input type="hidden" name="cartTotalPrice" value="<%= Total %>">
+                        <% } %>
+                        <tr>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td bgcolor="yellow">Cart Total:</td><td bgcolor="yellow"><%= Total %> $</td><td>
+
+                            <form class="form_parent" method="get" action="/api/orders/user_show_order/<%= cart.id %>"  id="cart_parent">
+                                <button type="submit" class="btn text-dark placeOrder" id="Proceed_to_Order" >Proceed to Order</button></td>
+                            </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="btn border-shadow delete delete-cart" cart-id="<%= cart.id %>"> <!-- cart id -->
+                                <span class="text-gradient"><i class="fas fa-times"></i> Delete Cart</span>
+                            </td>
+                        </tr>
+                        <script>
+                            //hidden Proceed to Order button when cart total equals zero.
+                            if("<%= Total %>" == new Number(0)){ 
+                                document.getElementById("Proceed_to_Order").style.visibility = "hidden";
+                            }else{
+                                document.getElementById("Proceed_to_Order").style.visibility ='visible';
+                            }
+                        </script>
+                    
+                </tbody>
+            </table>
+            
+        </div>
+    </main>
+<!-- /Main Site -->
+
+<!-- include footer -->
+<%- include('include/_footer.ejs') %>
+<!-- /include footer -->

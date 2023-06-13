@@ -1,0 +1,56 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+  <!-- Main Site -->
+  <main id="site-main">
+    <div class="container">
+        <div class="box-nav d-flex justify-between">
+            <h3>admin entrance.ejs</h3>
+           <div class="filter">
+               <a href="/api/auth/login"><i class="fas fa-angle-double-left"></i>login</a>
+           </div>
+
+           <div class="container">
+                 <!-- LOGOUT form -->
+                 <%- include('include/_formLogout') %>
+           </div>
+
+           <div class="filter">
+                <!-- PROFILE form -->
+                <%- include('include/_formProfileOne') %>
+           </div>
+           
+           <div class="filter">
+            <!-- show all by admin -->
+            <%- include('include/_formAdminShowAllUsers') %>
+
+            <div class="filter">
+                <!-- stats by admin -->
+                <%- include('include/_formStats') %>
+            </div>
+            
+            <div class="filter">
+                <a href="/api/auth/add_user"><i class="fas fa-angle-double-left"></i>add user</a>
+            </div>
+
+            <div class="filter">
+                <a href="/api/products/admin_add_product"><i class="fas fa-angle-double-left"></i>add product</a>
+            </div>
+
+            <div class="filter"></div>
+                <a href="/api/orders/admin_show_all_orders"  id="">show_all_orders</a>
+            </div>
+
+            <div class="filter">
+                <!-- stats by admin -->
+                <%- include('include/_formAdminShowAllProducts') %>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- /Main Site -->
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

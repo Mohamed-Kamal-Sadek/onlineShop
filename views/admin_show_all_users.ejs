@@ -1,0 +1,120 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+<h1>admin_show_all_users.ejs</h1>
+
+    <!-- Main Site -->
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex justify-between">
+                <a href="/" class="border-shadow">
+                    <span class="text-gradient">HOME <i class="fas fa-user"></i></span>
+                </a>
+            </div>
+
+
+
+            <!-- My search user by mobile part -->
+            <form action="/api/users/search_by_mob" method="get"  id="mobile_form">
+                <div class="form-group">
+                    <input type="tel" value="" name="mob" id="mobile_input" placeholder="search by mobile">
+                    <button type="submit" class="btn text-dark update">Search</button>
+                </div>
+            </form>
+
+            <!-- logout form -->
+            <div class="filter">
+                <%- include('include/_formLogout') %>
+            </div>
+
+
+            <table class="table">
+                <tbody>
+                        <% for(var i = 0; i < users.length; i++) { 
+                            var today = new Date();//now time in msec
+                            var birthDate = new Date(users[i].birthday)//birth date in msec;
+                            var ageYears = today.getFullYear() - birthDate.getFullYear();  <!-- difference in years -->
+                        %>
+
+                        <thead class="thead-dark">
+                            <tr>
+                                <!-- <th>id</th> -->
+                                <th>No.</th>
+                                <th>UserName</th>
+                                <th>Birthday</th>
+                                <th>Mob.</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <form class="form" method="" action=""  id="">
+                                <input type="hidden" name="id" value="<%= users[i]._id %>"><!--do not put td not to make displacement-->
+                                <td><input type="text" name="username" value="<%= users[i].username %>" placeholder="username"></td>
+                                <td><input type="datetime" name="birthday" value="<%= users[i].birthday %>" placeholder="birthday"></td>
+                                <td><input type="tel" name="mobile" value="<%= users[i].mobile %>" placeholder="mobile"></td>
+                                <td><input type="text" name="address" value="<%= users[i].address %>" placeholder="address"></td>
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>City</th>
+                                        <th>Gender</th>
+                                        <th>@Email</th>
+                                        <th>PassWord</th>
+                                        <th>isAdmin</th>
+                                    </tr>
+                                </thead>
+                                <td><input type="text" name="city" value="<%= users[i].city %>" placeholder="city"></td>
+
+                                <td>
+                                    <div class="">
+                                        <label for="radio-1" class="radio-label">male</label>
+                                        <input type="radio" id="radio-1" name="gender" value="Male"  <%= users[i].gender == "Male" ? 'checked' :'' %> >
+                                    </div>
+                                    <div class="">
+                                        <label for="radio-2" class="radio-label">female</label>
+                                        <input type="radio" id="radio-2" name="gender" value="Female"  <%= users[i].gender == "Female" ? 'checked' : '' %> >
+                                    </div>
+                                </td>
+
+                                <td><input type="email" name="email" value="<%= users[i].email %>" placeholder="example@comp.com"></td>
+                                <td><input type="text" name="password" value="<%= users[i].password %>" placeholder="write password"></td>
+                                <td>
+                                    <div class="">
+                                        <label for="radio-1" class="radio-label">true</label>
+                                        <input type="radio" id="radio-1" name="isAdmin" value="true"  <%= users[i].isAdmin == true ? 'checked' :'' %> >
+                                    </div>
+                                    <div class="">
+                                        <label for="radio-2" class="radio-label">false</label>
+                                        <input type="radio" id="radio-2" name="isAdmin" value="false"  <%= users[i].isAdmin == false ? 'checked' : '' %> >
+                                    </div>
+                                </td>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button type="submit" class="btn text-dark update" >SAVE</button>
+                                    </td>
+                                    <td>
+                                        <a class="btn border-shadow delete" data-id="<%= users[i].id %>">
+                                        <span class="text-gradient"><i class="fas fa-times"></i></span>
+                                    </td>
+                                    <td>age:<%= ageYears %></td>
+                                    <td>
+                                        <button type="button" class="btn text-dark update"><a href="/api/carts/find/<%= users[i]._id %>">CART</a></button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn text-dark update"><a href="/api/orders/find/<%= users[i]._id %>">Orders</a></button>
+                                    </td>
+                                </tr>
+                            </form>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+        </div>
+        <button type="" class="btn text-dark update" id="save_all">SAVE ALL</button>
+    </main>
+<!-- /Main Site -->
+
+<!-- include footer -->
+<%- include('include/_footer.ejs') %>
+<!-- /include footer -->

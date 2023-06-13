@@ -1,0 +1,117 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+    <!-- Main Site -->
+    <main id="site-main">
+        <div class="container">
+            
+            <div class="box-nav d-flex justify-between">
+                <a href="/" class="border-shadow">
+                    <span class="text-gradient">HOME <i class="fas fa-user"></i></span>
+                </a>
+            </div>
+
+            <!-- logout form -->
+            <div class="filter">
+                <%- include('include/_formLogout') %>
+            </div>
+
+            <h4>user_show_order.ejs</h4>
+        </div>
+
+        <div class="container">    
+            <% var Total = new Number(0) %>
+            <% var Total2 = new Number(0) %>
+            <form class="formOrder" method="" action=""  id="">
+                <table>
+                    <tr>
+                        <td>userId: <%= userData.userId %></td>
+                        <input type="hidden" name="userId" value="<%= userData.userId %>">
+                    </tr>
+                    <tr>
+                        <td>Name: <%= userData.username %></td>
+                        <input type="hidden" name="username" value="<%= userData.username %>">
+                    </tr>
+                    <tr>
+                        <td>Mobile: <%= userData.mobile %></td>
+                        <input type="hidden" name="mobile" value="<%= userData.mobile %>">
+                    </tr>
+                    <tr>
+                        <td>Adress: <%= userData.address %></td>
+                        <input type="hidden" name="address" value="<%= userData.address %>">
+                    </tr>
+                    <tr>
+                        <td>City: <%= userData.city %></td>
+                        <input type="hidden" name="city" value="<%= userData.city %>">
+                    </tr>
+                </table>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>No.</th>                  
+                            <th>Title</th>
+                            <th>Img</th>
+                            <th>Size</th>
+                            <th>Color</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>SubTotalPrice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <input type="text" name="cartId" class ="cartId" value="<%= oldCart.id %>">
+                        
+                        <% for(var i = 0; i < oldCart.products.length; i++) { %>
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <input type="hidden" name="productId<%= [i] %>" value="<%= oldCart.products[i].productId %>"><!--do not put td not to make displacement-->
+                            <td><%= oldCart.products[i].title %></td>
+                            <input type="hidden" name="title<%= [i] %>" value="<%= oldCart.products[i].title %>">
+                            <td><img src="<%= oldCart.products[i].img %>" height="50em" width="50em"></td>
+                            <input type="hidden" name="img<%= [i] %>" value="<%= oldCart.products[i].img %>">
+                            <td><%= oldCart.products[i].size %></td>
+                            <input type="hidden" name="size<%= [i] %>" value="<%= oldCart.products[i].size %>">
+                            <td><%= oldCart.products[i].color %></td>
+                            <input type="hidden" name="color<%= [i] %>" value="<%= oldCart.products[i].color %>">
+                            <td><%= oldCart.products[i].price %> $</td>
+                            <input type="hidden" name="price<%= [i] %>" value="<%= oldCart.products[i].price %>">
+                            <td><%= oldCart.products[i].quantity %></td>
+                            <input type="hidden" name="quantity<%= [i] %>" value="<%= oldCart.products[i].quantity %>">
+                            <td><%= oldCart.products[i].subTotalPrice %> $</td>
+                            <input type="hidden" name="subTotalPrice<%= [i] %>" value="<%= oldCart.products[i].subTotalPrice %>">
+                        </tr>
+                        <% Total = (Total + new Number(oldCart.products[i].subTotalPrice)) %>
+                        <% } %>
+                        <%= Total2 = Total + 10 %>
+                        <tr>
+                        </td><td></td><td></td><td></td><td></td><td></td><td></td><td>delivery:</td><td> 10 $</td>
+                        </tr>
+                        <tr>
+                            <input type="hidden" name="deliverCost" value="10">
+                            <input type="hidden" name="orderPrice" value="<%= Total2 %>">
+                            <td>
+                                <div class="form-group">
+                                    <label for="PaymentMethod" class="text-light">Payment Method</label>
+                                    <div class="radio inline">
+                                        <input type="radio" id="radio-1" name="PaymentMethod" value="CashOnDelivery" class="PaymentMethod" checked >
+                                        <label for="radio-1" class="radio-label">Cash on delivery</label>
+                                    </div>
+                                    <div class="radio inline">
+                                        <input type="radio" id="radio-2" name="PaymentMethod" value="Stripe" class="PaymentMethod" >
+                                        <label for="radio-2" class="radio-label">Stripe</label>
+                                    </div>
+                                </div>
+                            </td><td></td><td></td><td></td><td></td><td></td><td bgcolor="yellow">Total:</td><td bgcolor="yellow"><%= Total2 %> $</td>
+                            <td><button type="submit" class="btn text-dark placeOrder">Place Order</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </main>
+<!-- /Main Site -->
+
+<!-- include footer -->
+<%- include('include/_footer.ejs') %>
+<!-- /include footer -->

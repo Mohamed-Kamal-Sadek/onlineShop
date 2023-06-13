@@ -1,0 +1,72 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+    <!-- Main Site -->
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex justify-between">
+                <a href="/" class="border-shadow">
+                    <span class="text-gradient">HOME <i class="fas fa-user"></i></span>
+                </a>
+            </div>
+
+            <!-- logout form -->
+            <div class="filter">
+                <%- include('include/_formLogout') %>
+            </div>
+
+            <h4>user_show_all_products.ejs</h4>
+            <h5><%= kimos %></h5>
+
+            <table class="table">
+                <tbody>
+                   
+                        <thead class="thead-dark">
+                            <tr>
+                                <!-- <th>id</th> -->
+                                <th>No.</th>
+                                <th>Title</th>
+                                <th>Desc</th>
+                                <th>Img</th>
+                                <th>Categories</th>
+                                <th>Size</th>
+                                <th>color</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <% for(var i = 0; i < products.length; i++) { %>
+                                <% if(products[i].active){ %>
+                            <td><%= i + 1 %></td>
+                            <form class="form" method="" action=""  id="">
+                                <input type="hidden" name="productId" value="<%= products[i]._id %>"><!--do not put td not to make displacement-->
+                                <td><%= products[i].title %></td>
+                                <input type="hidden" name="productTitle" value="<%= products[i].title %>">
+                                <td><%= products[i].desc %></td>
+                                <td><img src="<%= products[i].img %>" height="50em" width="50em"></td>
+                                <input type="hidden" name="productImg" value="<%= products[i].img %>">
+                                <td><%= products[i].categories %></td>
+                                <td><%= products[i].size %></td>
+                                <input type="hidden" name="productSize" value="<%= products[i].size %>">
+                                <td><%= products[i].color %></td>
+                                <input type="hidden" name="productColor" value="<%= products[i].color %>">
+                                <td><%= products[i].price %></td>
+                                <input type="hidden" name="productPrice" value="<%= products[i].price %>">
+                                <td>
+                                    <input type="number" name="productQuantity" value="1" min="1" max="1000" step="1" placeholder="1">
+                                    <button type="submit" class="btn text-dark update" >Add to Cart</button>
+                                </td>
+                            </form>
+                        </tr>
+                        <% }} %>
+                        
+                    </tbody>
+                </table>
+        </div>
+    </main>
+<!-- /Main Site -->
+
+<!-- include footer -->
+<%- include('include/_footer.ejs') %>
+<!-- /include footer -->

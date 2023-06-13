@@ -1,0 +1,128 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+<h1>admin_show_all_products.ejs</h1>
+<% var kimos %>
+<h5><%= kimos %></h5>
+
+    <!-- Main Site -->
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex justify-between">
+                <a href="/" class="border-shadow">
+                    <span class="text-gradient">HOME <i class="fas fa-user"></i></span>
+                </a>
+            </div>
+            <!-- ////////////////////////////////////////////////////////////// -->
+            <!-- ////////////////////// logout form /////////////////////////// -->
+            <div class="filter">
+                <%- include('include/_formLogout') %>
+            </div>
+            
+            <div class="filter">
+                <a href="/api/products/admin_add_product"><i class="fas fa-angle-double-left"></i>add product</a>
+            </div>
+            <!-- ////////////////////////////////////////////////////////////// -->
+            <!-- /////// admin select all, active, or inactive products /////// -->
+             <% var is_active_product %>
+             <div class="">
+                <label for="radio_z" class="radio-label">All Products</label>
+                <input type="radio" id="radio_z" name="product_activity" value="" onClick="window.location = 'http://localhost:5000/api/products/admin_show_all_products';" <%= is_active_product == "all" ? 'checked' :'' %>>
+            </div>
+            <div class="">
+                <label for="radio_x" class="radio-label">Active Products</label>
+                <input type="radio" id="radio_x" name="product_activity" value="true" onClick="window.location = 'http://localhost:5000/api/products/active_products';" <%= is_active_product==true ? 'checked' :'' %>>
+            </div>
+            <div class="">
+                <label for="radio_y" class="radio-label">Inactive Products</label>
+                <input type="radio" id="radio_y" name="product_activity" value="false" onClick="window.location = 'http://localhost:5000/api/products/in_active_products';" <%= is_active_product==false ? 'checked' :'' %>>
+            </div>
+            
+            <!-- //////////////////////////////////////////////////////// -->
+            <!-- ////////////// Admin search products by title ////////// -->
+            <form action="/api/products/admin_search_by_title" method="get">
+                <div class="form-group">
+                    <input type="text" value="" name="title" placeholder="search by title">
+                    <button type="submit" class="btn text-dark update">Search By Title</button>
+                </div>
+            </form>
+            <!-- ////////////////////////////////////////////////////// -->
+            <!-- ////////// Admin search products by category ///////// -->
+            <form action="/api/products/admin_search_by_category" method="get">
+                <div class="form-group">
+                    <input type="text" value="" name="categories" placeholder="search by category">
+                    <button type="submit" class="btn text-dark update">Search By Category</button>
+                </div>
+            </form>
+            <!-- ////////////////////////////////////////////////////// -->
+            <table class="table">
+                <h6>admin_show_all_products.ejs</h6>
+                <tbody>
+                    <% for(var i = 0; i < products.length; i++) { %>
+                        <thead class="thead-dark">
+                            <tr>
+                                <!-- <th>id</th> -->
+                                <th>No.</th>
+                                <th>Title</th>
+                                <th>Desc</th>
+                                <th>ImgLink</th>
+                                <th>Img</th>
+                                <th>Categories</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <form class="form" method="" action=""  id="">
+                                <input type="hidden" name="id" value="<%= products[i]._id %>"><!--do not put td not to make displacement-->
+                                <td><input type="text" name="title" value="<%= products[i].title %>" placeholder="title"></td>
+                                <td><input type="text" name="desc" value="<%= products[i].desc %>" placeholder="desc"></td>
+                                <td><input type="text" name="img" value="<%= products[i].img %>" placeholder="img"></td>
+                                <td><img src="<%= products[i].img %>" height="50em" width="50em"></td>
+                                <td><input type="text" name="categories" value="<%= products[i].categories %>" placeholder="categories"></td>
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Size</th>
+                                        <th>color</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Enteredby</th>
+                                        <th>Active</th>
+                                    </tr>
+                                </thead>
+                                <td><input type="text" name="size" value="<%= products[i].size %>" placeholder="size"></td>
+                                <td><input type="text" name="color" value="<%= products[i].color %>" placeholder="city"></td>
+                                <td><input type="number" name="price" value="<%= products[i].price %>" placeholder="price"></td>
+                                <td><input type="number" name="quantity" value="<%= products[i].quantity %>" placeholder="quantity"></td>
+                                <td><%= products[i].enteredby %></td>
+                                <input type="hidden" name="enteredby" value="<%= products[i].enteredby %>" placeholder="enteredby">
+                                
+                                <td>
+                                    <div class="">
+                                        <label for="radio-1" class="radio-label">true</label>
+                                        <input type="radio" id="radio-1" name="active" value="true"  <%= products[i].active == true ? 'checked' :'' %> >
+                                    </div>
+                                    <div class="">
+                                        <label for="radio-2" class="radio-label">false</label>
+                                        <input type="radio" id="radio-2" name="active" value="false"  <%= products[i].active == false ? 'checked' : '' %> >
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn text-dark update" >Save</button>
+                                </td>
+                                <td>
+                                    <a class="btn border-shadow delete" data-id="<%= products[i].id %>">
+                                    <span class="text-gradient"><i class="fas fa-times"></i></span>
+                                </td>
+                            </form>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+        </div>
+        <button type="" class="btn text-dark update" id="save_all" >SAVE ALL</button>
+    </main>
+<!-- /Main Site -->
+
+<!-- include footer -->
+<%- include('include/_footer.ejs') %>
+<!-- /include footer -->

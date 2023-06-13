@@ -1,0 +1,77 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- /include header -->
+
+    <!-- Main Site -->
+    <main id="site-main">
+        <div class="container">
+            
+            <div class="box-nav d-flex justify-between">
+                <a href="/" class="border-shadow">
+                    <span class="text-gradient">HOME <i class="fas fa-user"></i></span>
+                </a>
+            </div>
+
+            <!-- logout form -->
+            <div class="filter">
+                <%- include('include/_formLogout') %>
+            </div>
+
+            <h4>graph.ejs</h4>
+
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <script>
+                const ctx = document.getElementById('myChart'); <!-- i can use $('#myChart') if i get the cdn of jquery as in footer -->
+              
+                "<% var labelx = [];  %>"
+                "<% var labely = [];  %>"
+                "<% for(var i = 0; i < data.length; i++) { %>"
+                    "<% labelx.push(data[i]._id); %>"
+                    "<% labely.push(data[i].total); %>"
+                "<% } %>"
+
+                Chart.defaults.font.size = 16;
+                new Chart(ctx, {
+                  type: 'bar',   //may be line, bubble, bar 
+                  data: {
+                    labels: "<%= labelx %>",
+                    datasets: [{
+                      label: '# of Users',
+                      data:"<%= labely %>",
+                      borderWidth:1    // for drawing bar with border thin or thick
+                    }]
+                  },
+                  options: {
+                    scales: {
+                      y: {
+                        beginAtZero: true,
+                        responsive: true
+                      }
+                    }
+                  }
+                });
+              </script>
+
+
+
+        </div>
+
+    </main>
+<!-- /Main Site -->
+
+
+
+
+
+
+<!-- include footer -->
+<%- include('include/_footer.ejs') %>
+<!-- /include footer -->
+
+
+

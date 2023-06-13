@@ -1,0 +1,100 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+    <!-- Main Site -->
+    <main id="site-main">
+        <div class="container">
+            
+            <div class="box-nav d-flex justify-between">
+                <a href="/" class="border-shadow">
+                    <span class="text-gradient">HOME <i class="fas fa-user"></i></span>
+                </a>
+            </div>
+
+            <!-- logout form -->
+            <div class="filter">
+                <%- include('include/_formLogout') %>
+            </div>
+
+            <h4>admin_show_all_orders.ejs</h4>
+        </div>
+
+        <div class="container">    
+            <form class="formOrder" method="" action=""  id="">
+                
+
+                <% var fs = [];  %>
+                <% for(var i = 0; i < orders.length; i++) { %>
+                    <tr>
+                        <td bgcolor="yellow"><strong>orderID:"<%= orders[i].id %>" </strong></td>
+                        <input type="hidden" name="orderId" value="<%= orders[i].id %>">
+                    </tr>
+                    <tr>
+                        <td bgcolor="yellow"><strong>cartID:"<%= orders[i].cartId %>" </strong></td>
+                        <input type="hidden" name="cartId" value="<%= orders[i].cartId %>">
+                    </tr>
+                    <% for(var k = 0; k < orders[i].products.length; k++) { %>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>No.</th>                  
+                                <th>Title</th>
+                                <th>Img</th>
+                                <th>Size</th>
+                                <th>Color</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>subTotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><%= k + 1 %></td>
+                                <input type="hidden" name="productId<%= [k] %>" value="<%= orders[i].xx[k].id %>"><!--do not put td not to make displacement-->
+                                <td><%= orders[i].xx[k].title %></td>
+                                <input type="hidden" name="title<%= [k] %>" value="<%= orders[i].xx[k].title %>">
+                                <td><img src="<%= orders[i].xx[k].img %>" height="50em" width="50em"></td>
+                                <input type="hidden" name="img<%= [k] %>" value="<%= orders[i].xx[k].img %>">
+                                <td><%= orders[i].xx[k].size %></td>
+                                <input type="hidden" name="size<%= [k] %>" value="<%= orders[i].xx[k].size %>">
+                                <td><%= orders[i].xx[k].color %></td>
+                                <input type="hidden" name="color<%= [k] %>" value="<%= orders[i].xx[k].color %>">
+                                <td><%= orders[i].xx[k].price %> $</td>
+                                <input type="hidden" name="price<%= [k] %>" value="<%= orders[i].xx[k].price %>">
+                                <td><%= orders[i].xx[k].quantity %></td>
+                                <input type="hidden" name="quantity<%= [k] %>" value="<%= orders[i].xx[k].quantity %>">
+                                <td><%= orders[i].xx[k].subTotalPrice %></td>
+                                <input type="hidden" name="subTotalPrice<%= [k] %>" value="<%= orders[i].xx[k].subTotalPrice %>">
+                            </tr>
+                            <tr>
+                                <% } %>
+                            </tr>    
+                            <tr>
+                                <td>deliverCost: <%= orders[i].deliverCost %></td>
+                                <td>orderPrice: <%= orders[i].orderPrice %></td>
+                                <td>status: <%= orders[i].status %></td>
+                                <input type="hidden" name="status" value="<%= orders[i].status %>" id="status">
+                                 <button  onclick="" ></button>
+                                 <td><a class="btn border-shadow delete delete-product" data-id="<%= orders[i].cartId %>"  id="delete<%= [i] %>"><input type="button" value="delete"></a></td>
+                                <script>
+                                    var status =new String("<%= orders[i].status %>")
+                                    if(status == "payed" || status == "complete"){
+                                        document.getElementById("delete<%= [i] %>").style.visibility = "hidden";
+                                    }else{
+                                        document.getElementById("delete<%= [i] %>").style.visibility ='visible';
+                                    }
+                                </script>                               
+                            </tr>
+                        </tbody>
+                    </table>
+                <% } %>
+                <td><button type="submit" class="btn text-dark placeOrder">ok</button></td>
+            </form>
+        </div>
+    </main>
+<!-- /Main Site -->
+
+<!-- include footer -->
+<%- include('include/_footer.ejs') %>
+<!-- /include footer -->
