@@ -4,10 +4,10 @@
   "description": "this is online shop",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
-    "build":"echo success",
-  "start": "nodemon src/server.js"
+  
+     "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "nodemon src/index.js",
+  "build":"echo success"
     
   },
   "author": "mohamed kamal sadek",
