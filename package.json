@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    
     "build": "echo success"
   },
   "author": "mohamed kamal sadek",
@@ -18,6 +17,7 @@
     "dotenv": "^14.3.2",
     "ejs": "^3.1.8",
     "express": "^4.17.2",
+    "express-handlebars": "^7.0.7",
     "html": "^1.0.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.1.8",
