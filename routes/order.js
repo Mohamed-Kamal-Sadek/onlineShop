@@ -14,8 +14,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 ////////////////////////////////////////////////////
 const path = require('path')
-var nodemailer = require('nodemailer');
-var hbs = require('nodemailer-express-handlebars');
+//var nodemailer = require('nodemailer');
+//var hbs = require('nodemailer-express-handlebars');
 ////////////////////////////////////////////////////
 ///////////////// TWILIO SMS ////////////////////////
 // Download the helper library from https://www.twilio.com/docs/node/install
@@ -57,6 +57,7 @@ router.get("/user_show_order/:cart_id", verifyToken, async (req, res) => {
 })
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////send mail fn. using nodemailer package only ////////////////////////
+/*
 function sendEmail(){
   return new Promise((resolve, reject) => {
 
@@ -85,8 +86,10 @@ function sendEmail(){
     })
   })
 }
+*/
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //////////send HTML mail fn. using nodemailer & nodemailer-express-handlebars packages ////////
+/*
 function sendHTMLemail(){
   return new Promise((resolve, reject) => {
 
@@ -133,6 +136,7 @@ function sendHTMLemail(){
     });
   });
 };
+*/
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //// user Place Order to db (and delete cart) by place order button in user_show_order.ejs //////////
 
