@@ -18,7 +18,7 @@ $(".admin_show_all_users_form").submit(function(event){
 
 
     var request = {
-        "url" : `http://localhost:5000/api/users/${user.id}`,
+        "url" : `https://onlineshop11.onrender.com/api/users/${user.id}`,
         "method" : "PUT",
         "data" : user ///this is the body which is the form data
     }
@@ -36,7 +36,7 @@ $(".admin_show_all_users_form").submit(function(event){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `http://localhost:5000/api/users/${id}`,
+            "url" : `https://onlineshop11.onrender.com/api/users/${id}`,
             "method" : "DELETE"
         }
 
@@ -64,7 +64,7 @@ $("#profile").submit(function(event){
     })
 
     var request = {
-        "url" : `http://localhost:5000/api/users/${user.id}`,
+        "url" : `https://onlineshop11.onrender.com/api/users/${user.id}`,
         "method" : "PUT",
         "data" : user ///this is the body which is the form data
     }
@@ -95,7 +95,7 @@ $(".admin_show_all_products_form").submit(function(event){
 
 
     var request = {
-        "url" : `http://localhost:5000/api/products/${product.id}`,
+        "url" : `https://onlineshop11.onrender.com/api/products/${product.id}`,
         "method" : "PUT",
         "data" : product ///this is the body which is the form data
     }
@@ -113,7 +113,7 @@ $(".admin_show_all_products_form").submit(function(event){
         var product_id = $(this).attr("data-id")
 
         var request = {
-            "url" : `http://localhost:5000/api/products/${product_id}`,
+            "url" : `https://onlineshop11.onrender.com/api/products/${product_id}`,
             "method" : "DELETE"
         }
 
@@ -141,7 +141,7 @@ $(".user_show_all_products_form").submit(function(event){
 
 
     var request = {
-        "url" : 'http://localhost:5000/api/carts',
+        "url" : 'https://onlineshop11.onrender.com/api/carts',
         "method" : "POST",
         "data" : cartData ///this is a PART of the body which is the form data
     }
@@ -164,7 +164,7 @@ $(".user_show_cart_form").submit(function(event){
     })
 
     var request = {
-        "url" : `http://localhost:5000/api/carts/${cart.id}`,
+        "url" : `https://onlineshop11.onrender.com/api/carts/${cart.id}`,
         "method" : "PUT",
         "data" : cart ///this is the body which is the form data
     }
@@ -182,7 +182,7 @@ $("a.user_show_cart_delete_product").click(function(event){
         var cartId = $(this).attr("cart-id");
         var productId = $(this).attr("product-id")
         var request = {
-            "url" : `http://localhost:5000/api/carts/delete_product/${cartId}/${productId}`, //req.params.cartId and req.params.productId
+            "url" : `https://onlineshop11.onrender.com/api/carts/delete_product/${cartId}/${productId}`, //req.params.cartId and req.params.productId
             "method" : "PUT",
             "data":""
         }
@@ -203,7 +203,7 @@ $("a.user_show_cart_delete_product").click(function(event){
         var id = $(this).attr("cart-id")
 
         var request = {
-            "url" : `http://localhost:5000/api/carts/${id}`,
+            "url" : `https://onlineshop11.onrender.com/api/carts/${id}`,
             "method" : "DELETE"
         }
 
@@ -233,7 +233,7 @@ $(".user_show_order_form").submit(function(event){
         if ($("#radio-1").is(':checked')){ ////// PaymentMethod = 'cashOnDelivery'
             //let PaymentMethod = 'cashOnDelivery';
             var request = {
-                "url" : `http://localhost:5000/api/orders/`,
+                "url" : `https://onlineshop11.onrender.com/api/orders/`,
                 "method" : "POST",
                 "data" : orderData 
             }
@@ -259,7 +259,7 @@ $(".user_show_order_form").submit(function(event){
         var cart_id = $(this).attr("data-id")
 
         var request = {
-            "url" : `http://localhost:5000/api/orders/delete/${cart_id}`,
+            "url" : `https://onlineshop11.onrender.com/api/orders/delete/${cart_id}`,
             "method" : "DELETE"
         }
 
