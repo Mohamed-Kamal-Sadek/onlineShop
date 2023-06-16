@@ -39,7 +39,7 @@
                             <% for(var i = 0; i < products.length; i++) { %>
                                 <% if(products[i].active){ %>
                             <td><%= i + 1 %></td>
-                            <form class="form" method="" action=""  id="">
+                            <form class="user_show_all_products_form" method="" action=""  id="">
                                 <input type="hidden" name="productId" value="<%= products[i]._id %>"><!--do not put td not to make displacement-->
                                 <td><%= products[i].title %></td>
                                 <input type="hidden" name="productTitle" value="<%= products[i].title %>">

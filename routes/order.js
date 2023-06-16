@@ -180,12 +180,13 @@ router.post("/", verifyToken, async (req, res) => {
     await sendHTMLemail(); // may be some settings of package changed
     */
     ////////Sending SMS >>>>>>>>>>>>>>>>>
+    /*
     await clientSMS.messages
     .create({ body: "Order saved pending", from: "+12766336413", to: "+201002221973" })
     .then(message => console.log(message.sid));
-
+    */
     ////////Sending WhatsApp >>>>>>>>>>>>>>>>>
-    
+    /*
     await clientWhatsApp.messages
     .create({
         body: 'Your appointment is coming up on July 21 at 3PM',
@@ -193,10 +194,11 @@ router.post("/", verifyToken, async (req, res) => {
         to: 'whatsapp:+201119168993'
     })
     .then(message => console.log(message.sid))
-    //.done();  // it affect sending alert message from index.js in assests
+    */
+    res.status(200).done();  // it affect sending alert message from index.js in assests
 
 
-    res.status(200).json(savedOrder);
+    //res.status(200).json(savedOrder);
   } catch (err) {
     res.status(500).json(err);
   }

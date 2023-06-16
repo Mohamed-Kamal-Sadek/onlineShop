@@ -6,9 +6,9 @@ $("#add_user").submit(function(event){
 //////////////////////////////////////////////////////////////////////
 ///////// save btn in admin_show_all_users.ejs ///////////////////////
 
-$(".form").submit(function(event){
+$(".admin_show_all_users_form").submit(function(event){
     event.preventDefault();
-    if(window.location.pathname == "/api/users/admin_show_all_users"){
+    
     var unindexed_array = $(this).serializeArray();
     var user = {}
 
@@ -27,11 +27,11 @@ $(".form").submit(function(event){
         alert("Data Updated Successfully!");
     })
     
-}})
+})
 ///////////////////////////////////////////////////////////////////////
 /////////////// delete btn in admin_show_all_users.ejs ////////////////
-if(window.location.pathname == "/api/users/admin_show_all_users"){
-    var ondelete = $(".table tbody td a.delete");
+
+    var ondelete = $(".table tbody td a.admin_show_all_users_delete_user");
     ondelete.click(function(){
         var id = $(this).attr("data-id")
 
@@ -48,7 +48,7 @@ if(window.location.pathname == "/api/users/admin_show_all_users"){
         };
 
     });
-};
+
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////// save btn in profile.ejs (user updates his profile OR //////////////////
 //////or admin search by mob. no. IN admin_show_all_users.ejs then updates a user ////
@@ -56,14 +56,12 @@ if(window.location.pathname == "/api/users/admin_show_all_users"){
 
 $("#profile").submit(function(event){
     event.preventDefault();
-    //if(window.location.pathname == "/api/users/profile" ||window.location.pathname == "/api/users/profile/search_by_mob?mob"){
     var unindexed_array = $(this).serializeArray();
     var user = {}
 
     $.map(unindexed_array, function(n, i){
         user[n['name']] = n['value'];
     })
-
 
     var request = {
         "url" : `http://localhost:5000/api/users/${user.id}`,
@@ -85,9 +83,9 @@ $("#add_product").submit(function(event){
 /////////////////////////////////////////////////////////////
 /////////save btn in admin_show_all_products.ejs ////////////
 
-$(".form").submit(function(event){
+$(".admin_show_all_products_form").submit(function(event){
     event.preventDefault();
-    if(window.location.pathname == "/api/products/admin_show_all_products" || window.location.pathname == "/api/products/active_products" || window.location.pathname == "/api/products/in_active_products"){
+    
     var unindexed_array = $(this).serializeArray();
     var product = {};
 
@@ -106,11 +104,11 @@ $(".form").submit(function(event){
         alert("Products Updated Successfully!");
     })
     
-}})
+})
 //////////////////////////////////////////////////////////////
 //////////// delete btn in admin_show_all_products.ejs ///////
-if(window.location.pathname == "/api/products/admin_show_all_products" || window.location.pathname == "/api/products/active_products" || window.location.pathname == "/api/products/in_active_products"){
-    var ondelete = $(".table tbody td a.delete");
+
+    var ondelete = $(".table tbody td a.delete_product");
     ondelete.click(function(){
         var product_id = $(this).attr("data-id")
 
@@ -127,13 +125,13 @@ if(window.location.pathname == "/api/products/admin_show_all_products" || window
         }
 
     })
-}
+
 ///////////////////////////////////////////////////////////////////
 /////////Add to Cart btn in user_show_all_products.ejs ////////////
 
-$(".form").submit(function(event){
+$(".user_show_all_products_form").submit(function(event){
     event.preventDefault();
-    if(window.location.pathname == "/api/products/user_show_all_products" || window.location.pathname =="/api/products/search_by_category" || window.location.pathname =="/api/products/search_by_title"|| window.location.pathname =="/api/products/search_by_newest"){
+    
     var unindexed_array = $(this).serializeArray();
     var cartData = {};
 
@@ -152,13 +150,12 @@ $(".form").submit(function(event){
         alert("item added Successfully!");
         location.reload();
     })
-}});
+});
 /////////////////////////////////////////////////////////////
 //////////// save quantity in user_show_cart.ejs ////////////
 
-$(".form").submit(function(event){
+$(".user_show_cart_form").submit(function(event){
     event.preventDefault();
-    if(window.location.pathname == "/api/carts/user_show_cart"){
     var unindexed_array = $(this).serializeArray();
     var cart = {};
 
@@ -177,12 +174,11 @@ $(".form").submit(function(event){
         location.reload();
     })
     
-}});
+});
 /////////////////////////////////////////////////////////////////////////
 ////////// delete a product from Cart btn in user_show_cart.ejs /////////  no change
-$("a.delete-product").click(function(event){
-     event.preventDefault();
-    if(window.location.pathname == "/api/carts/user_show_cart"){       
+$("a.user_show_cart_delete_product").click(function(event){
+     event.preventDefault();      
         var cartId = $(this).attr("cart-id");
         var productId = $(this).attr("product-id")
         var request = {
@@ -198,12 +194,11 @@ $("a.delete-product").click(function(event){
             })
         }
 
-    }
 });
 //////////////////////////////////////////////////////////////////////
 /////////////// delete Cart btn in user_show_cart.ejs //////////////// no change
-if(window.location.pathname == "/api/carts/user_show_cart"){
-    var ondelete = $(".delete-cart");
+
+    var ondelete = $(".user_show_cart_delete_cart");
     ondelete.click(function(){
         var id = $(this).attr("cart-id")
 
@@ -220,15 +215,14 @@ if(window.location.pathname == "/api/carts/user_show_cart"){
         }
 
     })
-}
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////// place order btn in user_show_order.ejs //////////////////
 
-$(".formOrder").submit(function(event){
+$(".user_show_order_form").submit(function(event){
     event.preventDefault();
     var cartId =$(".cartId").attr("value");
 
-    if(window.location.pathname == `/api/orders/user_show_order/${cartId}`){
         var unindexed_array = $(this).serializeArray();
         var orderData = {};
 
@@ -246,20 +240,21 @@ $(".formOrder").submit(function(event){
 
             $.ajax(request).done(function(response){
                 alert("item added Successfully!");
-                location.reload();
+                
             })
+            location.reload();
         }
         /////////////////// Strip ////////////////////////////////////////
         else if ($("#radio-2").is(':checked')){
 
             window.location.pathname = `/api/stripe/${orderData.cartId}`;
         }
-    }    
+       
 });
 //////////////////////////////////////////////////////////////////////////////
 /////////////// delete btn in Admin_show_all_orders.ejs //////////////////////
-if(window.location.pathname == "/api/orders/admin_show_all_orders"){
-    var ondelete = $(".table tbody td a.delete");
+
+    var ondelete = $(".table tbody td a.admin_show_all_orders_delete_order");
     ondelete.click(function(){
         var cart_id = $(this).attr("data-id")
 
@@ -276,4 +271,3 @@ if(window.location.pathname == "/api/orders/admin_show_all_orders"){
         }
 
     })
-}

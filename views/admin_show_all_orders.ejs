@@ -76,7 +76,7 @@
                                 <td>status: <%= orders[i].status %></td>
                                 <input type="hidden" name="status" value="<%= orders[i].status %>" id="status">
                                  <button  onclick="" ></button>
-                                 <td><a class="btn border-shadow delete delete-product" data-id="<%= orders[i].cartId %>"  id="delete<%= [i] %>"><input type="button" value="delete"></a></td>
+                                 <td><a class="btn border-shadow admin_show_all_orders_delete_order" data-id="<%= orders[i].cartId %>"  id="delete<%= [i] %>"><input type="button" value="delete"></a></td>
                                 <script>
                                     var status =new String("<%= orders[i].status %>")
                                     if(status == "payed" || status == "complete"){

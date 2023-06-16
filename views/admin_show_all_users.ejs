@@ -48,7 +48,7 @@
                         </thead>
                         <tr>
                             <td><%= i + 1 %></td>
-                            <form class="form" method="" action=""  id="">
+                            <form class="admin_show_all_users_form" method="" action=""  id="">
                                 <input type="hidden" name="id" value="<%= users[i]._id %>"><!--do not put td not to make displacement-->
                                 <td><input type="text" name="username" value="<%= users[i].username %>" placeholder="username"></td>
                                 <td><input type="datetime" name="birthday" value="<%= users[i].birthday %>" placeholder="birthday"></td>
@@ -94,7 +94,7 @@
                                         <button type="submit" class="btn text-dark update" >SAVE</button>
                                     </td>
                                     <td>
-                                        <a class="btn border-shadow delete" data-id="<%= users[i].id %>">
+                                        <a class="btn border-shadow admin_show_all_users_delete_user" data-id="<%= users[i].id %>">
                                         <span class="text-gradient"><i class="fas fa-times"></i></span>
                                     </td>
                                     <td>age:<%= ageYears %></td>

@@ -39,7 +39,7 @@
                     
                         <% var Total = new Number(0) %>
                         <% for(var i = 0; i < user_show_cart.products.length; i++) { %>
-                        <form class="form" method="" action=""  id="">
+                        <form class="user_show_cart_form" method="" action=""  id="">
                             <input type="hidden" name="id" value="<%= user_show_cart.id %>">
                             <input type="hidden" name="userId" value="<%= user_show_cart.userId %>">
                             <tr>
@@ -61,7 +61,7 @@
                                 <input type="hidden" name="subTotalPrice" value="<%= user_show_cart.products[i].subTotalPrice %>">
                             
                                 <td>
-                                    <a class="btn border-shadow delete delete-product" cart-id="<%= user_show_cart.id %>" product-id="<%= user_show_cart.products[i].productId %>">
+                                    <a class="btn border-shadow delete user_show_cart_delete_product" cart-id="<%= user_show_cart.id %>" product-id="<%= user_show_cart.products[i].productId %>">
                                     <span class="text-gradient"><i class="fas fa-times"></i></span>
                                 </td>
                             </tr>
@@ -79,7 +79,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a class="btn border-shadow delete delete-cart" cart-id="<%= user_show_cart.id %>"> <!-- cart id -->
+                                <a class="btn border-shadow delete user_show_cart_delete_cart" cart-id="<%= user_show_cart.id %>"> <!-- cart id -->
                                 <span class="text-gradient"><i class="fas fa-times"></i> Delete Cart</span>
                             </td>
                         </tr>
